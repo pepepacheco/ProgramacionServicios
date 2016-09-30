@@ -13,15 +13,29 @@ function Ejercicio1(cadena){
                     return false;
             }
     },
-        delReves: function(){
-            for (var i = _cadena.length; i>0 ;i--){
-                var palabra;
-                palabra = palabra + _cadena.charAt(i);
-            }
-        }
+        delReves:   function(){
+                var palabra="";
+                palabra = _cadena.split("").reverse().join("");
+                return palabra;
+        },
+      numeroCaracteres: function(){
+          return _cadena.length;
+      },
+      cadenaMayuscula: function(){
+          return _cadena.toUpperCase();
+      },
+      esPalindromo: function(){
+          return (_cadena.split("").reverse().join("")===_cadena);
+      }
+      
     };
 }
-var a = Ejercicio1("Saludos");
+var a = Ejercicio1("Hola");
 console.log(a.esCadena());
 console.log(a.delReves());
+console.log(a.numeroCaracteres());
+console.log(a.cadenaMayuscula());
+console.log(a.esPalindromo());
+
+
 
