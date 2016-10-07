@@ -7,45 +7,43 @@ function Ejercicio2(cadena){
     var _cadena = cadena;
     return{
         esValido: function(){
-            if ((/[0-9]{8}[A-Z]?$/).test(_cadena)){
+            if ((/^[0-9]{8}[A-Z]?$/).test(_cadena)){
                 return true;
             }else {
                 return false;
             }
         },
         tipoDocumento: function(){
-            if ((/[0-9]{8}[A-Z]$/).test(_cadena)){
+            if ((/^[0-9]{8}[A-Z]$/).test(_cadena)){
                 return "NIF";
-            }else if ((/[0-9]{8}$/).test(_cadena)){
+            }else if ((/^[0-9]{8}$/).test(_cadena)){
                 return "DNI";
             }else{
                 return "ERROR";
             }
         },
         getLetra: function(){
-            if ((/[0-9]{8}[A-Z]$/).test(_cadena)){
+            if (this.tipoDocumento()==='NIF'){
                 return _cadena.charAt(8);
-            }else{
-                return "No es un NIF"
+            }else if(this.tipoDocumento()==='DNI'){
+                return "TRWAGMYFPDXBNJZSQVHLCKET".substring(_cadena % 23,(_cadena % 23)+1); 
+            }else {
+                return 'cadena erronea';
             }
         },
-        calculaLetra: function(){
-            if ((/[0-9]{8}$/).test(_cadena)){
-                letras="TRWAGMYFPDXBNJZSQVHLCKET";
-                posicion = parseInt(_cadena) % 23;
-                letra = letras.substring(posicion,posicion+1);
-                return letra; 
-            }else{
-                return "No es DNI"
-            }
+        validarNIF: function(){
+          if (this.tipoDocumento()==='NIF'){
+              return (_cadena.charAt(8)===this.getLetra());
+          }
+          else 
+              return false;
         }
-        
     }
 }
-var prueba = Ejercicio2("77368241J");
+var prueba = Ejercicio2("77368241");
 console.log(prueba.esValido());
 console.log(prueba.tipoDocumento());
 console.log(prueba.getLetra());
-console.log(prueba.calculaLetra());
+console.log(prueba.validarNIF());
 
 
